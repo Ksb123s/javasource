@@ -24,8 +24,10 @@ public class ForEx5 {
       }
     }
     System.out.println("");
-    for (int i = 0; i < 5; i++) {
-      for (int k = 5; k > i; k--) {
+
+    // 피라미드 코드
+    for (int i = 0; i < 15; i++) {
+      for (int k = 15; k > i; k--) {
         System.out.print(' ');
       }
       for (int j = 0; j < 2 * i + 1; j++) {
