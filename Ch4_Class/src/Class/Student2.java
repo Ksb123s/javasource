@@ -13,6 +13,21 @@ public class Student2 {
   //멤버메소드(instance mathod, 기능)
   // 속성을 변경시킬 수 있도록 메소드 작성
 
+  public Student2(String id, String name, String hp, String addr) {
+    this.id = id;
+    this.name = name;
+    this.hp = hp;
+    this.addr = addr;
+  }
+
+  public Student2() {}
+
+  public Student2(String id, String name, String addr) {
+    this.id = id;
+    this.name = name;
+    this.addr = addr;
+  }
+
   void changeAdrr() {}
 
   void changeHp() {}
