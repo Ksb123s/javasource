@@ -9,14 +9,17 @@ import java.util.Scanner;
 //  비밀번호가 12345 가 아니면 wrong
 public class LoginEx {
 
-  public static void main(String[] args)
-    throws NoExisitIdException, WrongPasswordException {
+  public static void main(String[] args){
     Scanner scanner = new Scanner(System.in);
     System.out.println("Input Id : ");
     String id = scanner.nextLine();
     System.out.println("Input Password : ");
     String Pwd = scanner.nextLine();
-    Login(id, Pwd);
+    try {
+        Login(id, Pwd);
+    } catch (NoExisitIdException | WrongPasswordException e) {
+        e.printStackTrace();
+    }
   }
 
   public static void Login(String ID, String Password)

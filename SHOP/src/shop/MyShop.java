@@ -36,7 +36,7 @@ public class MyShop implements IShop {
     customer2.setPayType(PayType.CASH);
     customers[1] = customer2;
     Customer customer3 = new Customer();
-    customer3.setName("김길동");
+    customer3.setName("김길동");     
     customer3.setPayType(PayType.CARD);
     customers[2] = customer3;
     Customer customer4 = new Customer();
