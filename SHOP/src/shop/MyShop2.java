@@ -1,20 +1,19 @@
 package shop;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class MyShop implements IShop {
+public class MyShop2 implements IShop {
 
+  // 배열 데이터 저장
   Scanner sc = new Scanner(System.in);
   private int count = 0;
   private String cNo;
-  private List<Customer> customers = new ArrayList<>(10);
-  private List<Product> products = new ArrayList<>(10);
+  private Customer customers[] = new Customer[5];
+  private Product products[] = new Product[5];
   private String title;
 
   //   장바구니
-  private List<Product> carts = new ArrayList<>(10); //cellPhone 과 samartTv둘다 담아야하기에
+  private Product carts[] = new Product[5]; //cellPhone 고 ㅏ samartTv둘다 담아야하기에
 
   @Override
   public void setTitle(String title) {
@@ -32,49 +31,47 @@ public class MyShop implements IShop {
     Customer customer = new Customer();
     customer.setName("홍길동");
     customer.setPayType(PayType.CARD);
-    customers.add(customer);
+    customers[0] = customer;
     Customer customer2 = new Customer();
     customer2.setName("강동원");
     customer2.setPayType(PayType.CASH);
-    customers.add(customer2);
+    customers[1] = customer2;
     Customer customer3 = new Customer();
     customer3.setName("김길동");
     customer3.setPayType(PayType.CARD);
-    customers.add(customer3);
+    customers[2] = customer3;
     Customer customer4 = new Customer();
     customer4.setName("이춘화");
     customer4.setPayType(PayType.CASH);
-    customers.add(customer4);
+    customers[3] = customer4;
     Customer customer5 = new Customer();
     customer5.setName("홍길면");
     customer5.setPayType(PayType.CARD);
-    customers.add(customer5);
+    customers[4] = customer5;
   }
 
   @Override
   public void genProduct() {
     CellPhone phone = new CellPhone(100000, "겔럭시 노트 10+", "U+");
-    products.add(phone);
+    products[0] = phone;
     phone = new CellPhone(5000000, "겔럭시 z 플립", "Kt");
-    products.add(phone);
+    products[1] = phone;
     phone = new CellPhone(8000000, "겔럭시 s20", "U+");
-    products.add(phone);
+    products[2] = phone;
     SmartTV smartTV = new SmartTV(90000000, "OLED", "240HZ");
-    products.add(smartTV);
+    products[3] = smartTV;
     smartTV = new SmartTV(2000000, "SmartOLED", "240Hz");
-    products.add(smartTV);
+    products[4] = smartTV;
   }
 
   @Override
   public void Start() {
+    boolean State = true;
     System.out.println(this.title + ": 메인화면 - 계정 선택");
     System.out.println("------------------------------");
-    for (int i = 0; i < customers.size(); i++) {
-      System.out.printf(
-        "[%d] %s(%s)\n",
-        i,
-        customers.get(i).getName(),
-        customers.get(i).getPayType()
+    for (int i = 0; i < customers.length; i++) {
+      System.out.println(
+        i + customers[i].getName() + "(" + customers[i].getPayType() + ")"
       );
     }
     System.out.println("[x] 종료");
@@ -90,12 +87,11 @@ public class MyShop implements IShop {
   }
 
   public void productList() {
-    int State = 1;
     System.out.println(this.title + ": 상품목록 - 상품선택");
     System.out.println("------------------------------");
-    for (int i = 0; i < products.size(); i++) {
-      System.out.printf("[%d]\n", i);
-      products.get(i).PrintDetail();
+    for (int i = 0; i < products.length; i++) {
+      System.out.print("[" + i + "]");
+      products[i].PrintDetail();
     }
     System.out.println("[h] 메인화면");
     System.out.println("[c] 체크아웃");
@@ -113,7 +109,8 @@ public class MyShop implements IShop {
         break;
       default: // 0~4에 해당하는 제품을 장바구니에 추가
         try {
-          carts.add(products.get(Integer.parseInt(menu)));
+          carts[count] = products[Integer.parseInt(menu)];
+          count++;
           productList();
           break;
         } catch (Exception e) {
@@ -146,7 +143,7 @@ public class MyShop implements IShop {
     System.out.println("-----------------------------------");
     System.out.println("결제 금액 : " + result + "원");
     System.out.println(
-      "결제 방법 : " + customers.get(Integer.parseInt(cNo)).getPayType()
+      "결제 방법 : " + customers[Integer.parseInt(cNo)].getPayType()
     );
     System.out.println("[p] 이전");
     System.out.println("[q] 결제");
